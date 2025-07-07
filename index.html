@@ -1,0 +1,205 @@
+<!-- FILE 1: index.html -->
+<!-- Save this code in a file named "index.html" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Amharic Body Parts Vocabulary</title>
+    
+    <!-- Google Fonts for better Amharic and English typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abyssinica+SIL&family=Noto+Sans+Ethiopic:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main container to isolate the app's styles and scripts -->
+    <div id="amharic-body-parts-app">
+        <header>
+            <h1>የሰውነት ክፍሎች (Body Parts)</h1>
+            <nav>
+                <div class="nav-section">
+                    <span class="nav-label">Mode:</span>
+                    <button id="mode-learn-btn" class="mode-btn active" aria-pressed="true">Learn</button>
+                    <button id="mode-quiz-btn" class="mode-btn" aria-pressed="false">Quiz</button>
+                </div>
+                <div id="view-selector" class="nav-section">
+                    <span class="nav-label">View:</span>
+                    <button id="view-front-btn" class="view-btn active" aria-pressed="true">Front</button>
+                    <button id="view-back-btn" class="view-btn" aria-pressed="false">Back</button>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <!-- This hidden region is for screen reader announcements, improving accessibility -->
+            <div id="aria-live-region" class="visually-hidden" aria-live="polite"></div>
+
+            <!-- Learn Mode Container -->
+            <div id="learn-mode-container" class="mode-container active">
+                <div class="display-panel">
+                    <!-- NEW: Image container -->
+                    <div id="display-image-container" class="hidden">
+                        <img id="display-image" src="" alt="Body Part Image">
+                    </div>
+                    <!-- Text container -->
+                    <div id="display-text-container">
+                        <p id="display-amharic" class="display-text">&nbsp;</p>
+                        <p id="display-english" class="display-text">&nbsp;</p>
+                        <p id="display-phonetic" class="display-text">&nbsp;</p>
+                    </div>
+                </div>
+                <div class="interactive-area">
+                    <!-- SVG Container for the Front View -->
+                    <div id="svg-container-front" class="svg-container">
+                        <svg id="body-map-front" class="body-map" role="img" aria-labelledby="svg-title-front" viewBox="0 0 400 700" xmlns="http://www.w3.org/2000/svg">
+                            <title id="svg-title-front">Front view of human body</title>
+                            <!-- Base Visual Layers (Not Clickable) -->
+                            <g id="visual-layer-front">
+                                <path class="body-base" d="M200,195 C240,195 255,250 255,300 L255,380 L145,380 L145,300 C145,250 160,195 200,195 Z" />
+                                <path class="body-base" d="M200,90 a60,65 0 1,1 0,130 a60,65 0 1,1 0,-130" />
+                                <path class="body-base" d="M185,195 a20,20 0 0,0 30,0 L220,220 L180,220 Z"/>
+                                <path class="body-base" d="M145,220 C125,230 110,290 120,350 L100,355 L95,280 C95,240 135,210 145,220 Z" />
+                                <path class="body-base" d="M255,220 C275,230 290,290 280,350 L300,355 L305,280 C305,240 265,210 255,220 Z" />
+                                <path class="body-base" d="M145,380 C140,480 160,580 150,650 L180,650 C180,580 155,480 155,380 Z" />
+                                <path class="body-base" d="M255,380 C260,480 240,580 250,650 L220,650 C220,580 245,480 245,380 Z" />
+                                <ellipse class="body-base" cx="165" cy="650" rx="30" ry="15"/>
+                                <ellipse class="body-base" cx="235" cy="650" rx="30" ry="15"/>
+                                <path class="hair-base" d="M200,90 a60,65 0 0,1 -45,-60 a120,120 0 0,1 90,0 a60,65 0 0,1 -45,60" />
+                                <path class="eyebrows-base" d="M160,135 a20,8 0 0,1 30,0 M210,135 a20,8 0 0,0 30,0" />
+                                <ellipse class="eyes-base" cx="175" cy="150" rx="8" ry="6" /> <circle class="pupils-base" cx="175" cy="150" r="3" />
+                                <ellipse class="eyes-base" cx="225" cy="150" rx="8" ry="6" /> <circle class="pupils-base" cx="225" cy="150" r="3" />
+                                <path class="body-base" d="M195,160 c 5,5 5,15 0,20" stroke-linecap="round" fill="none"/>
+                                <path class="mouth-base" d="M190,195 a20,8 0 0,0 20,0" />
+                                <path class="t-shirt-base" d="M200,220 C240,220 255,260 255,300 L145,300 C145,260 160,220 200,220 Z M145,220 C135,210 95,240 95,280 L120,290 C120,250 145,220 145,220 Z M255,220 C265,210 305,240 305,280 L280,290 C280,250 255,220 255,220 Z" />
+                                <path class="shorts-base" d="M145,320 L255,320 L255,380 L145,380 Z M195,380 L205,380 L205,350 L195,350 Z" />
+                            </g>
+                            <!-- CLICKABLE AREAS (FRONT VIEW) -->
+                            <g id="clickable-layer-front" aria-hidden="true">
+                                 <circle data-id="head" class="clickable-area" cx="200" cy="155" r="65" />
+                                 <path data-id="hair" class="clickable-area" d="M200,90 a60,65 0 0,1 -45,-60 a120,120 0 0,1 90,0 a60,65 0 0,1 -45,60" />
+                                 <path data-id="forehead" class="clickable-area" d="M150,110 L250,110 L250,130 L150,130 Z" />
+                                 <path data-id="face" class="clickable-area" d="M145,110 L255,110 L255,220 L145,220 Z" />
+                                 <path data-id="eyebrow" class="clickable-area" d="M155,130 L190,142 L190,130 Z" />
+                                 <path data-id="eyebrow" class="clickable-area" d="M210,130 L245,142 L245,130 Z" />
+                                 <path data-id="eyelash" class="clickable-area" d="M165,155 L185,158 L165,158 Z" />
+                                 <path data-id="eyelash" class="clickable-area" d="M215,155 L235,158 L215,158 Z" />
+                                 <path data-id="eye" class="clickable-area" d="M165,142 L185,155 L165,155 Z" />
+                                 <path data-id="eye" class="clickable-area" d="M215,142 L235,155 L215,155 Z" />
+                                 <path data-id="ear" class="clickable-area" d="M140,140 a10,18 0 0,0 0,35" />
+                                 <path data-id="ear" class="clickable-area" d="M260,140 a10,18 0 0,1 0,35" />
+                                 <path data-id="nose" class="clickable-area" d="M190,155 L210,180 L190,180 Z" />
+                                 <path data-id="cheek" class="clickable-area" d="M145,155 L180,190 L145,190 Z" />
+                                 <path data-id="cheek" class="clickable-area" d="M220,155 L255,190 L220,190 Z" />
+                                 <path data-id="mouth" class="clickable-area" d="M185,190 L215,205 L185,205 Z" />
+                                 <path data-id="lip" class="clickable-area" d="M185,190 L215,190 L215,195 L185,195 Z" />
+                                 <path data-id="tooth" class="clickable-area" d="M192,196 L208,196 L208,200 L192,200 Z" />
+                                 <path data-id="tongue" class="clickable-area" d="M192,198 Q200,205 208,198" />
+                                 <path data-id="chin" class="clickable-area" d="M170,205 L230,220 L170,220 Z" />
+                                 <path data-id="neck" class="clickable-area" d="M185,215 L215,230 L180,230 Z" />
+                                 <path data-id="shoulder" class="clickable-area" d="M130,215 L180,215 L180,240 L120,240 Z" />
+                                 <path data-id="shoulder" class="clickable-area" d="M220,215 L270,215 L280,240 L220,240 Z" />
+                                 <path data-id="chest" class="clickable-area" d="M170,230 L230,290 L170,290 Z" />
+                                 <path data-id="belly" class="clickable-area" d="M170,290 L230,340 L170,340 Z" />
+                                 <path data-id="thigh" class="clickable-area" d="M155,380 L180,520 L155,520 Z" />
+                                 <path data-id="thigh" class="clickable-area" d="M245,380 L220,520 L245,520 Z" />
+                                 <circle data-id="knee" class="clickable-area" cx="170" cy="525" r="25" /> 
+                                 <circle data-id="knee" class="clickable-area" cx="230" cy="525" r="25" />
+                                 <path data-id="calf" class="clickable-area" d="M160,550 L180,640 L160,640 Z" />
+                                 <path data-id="calf" class="clickable-area" d="M240,550 L220,640 L240,640 Z" />
+                                 <circle data-id="ankle" class="clickable-area" cx="175" cy="655" r="15" /> 
+                                 <circle data-id="ankle" class="clickable-area" cx="225" cy="655" r="15" />
+                                 <ellipse data-id="foot" class="clickable-area" cx="165" cy="665" rx="40" ry="20"/> 
+                                 <ellipse data-id="foot" class="clickable-area" cx="235" cy="665" rx="40" ry="20"/>
+                                 <path data-id="toe" class="clickable-area" d="M130,670 L190,685 L130,685 Z" />
+                                 <path data-id="toe" class="clickable-area" d="M210,670 L270,685 L210,685 Z" />
+                                 <path data-id="arm" class="clickable-area" d="M145,220 C125,230 110,290 120,350 L100,355 L95,280 C95,240 135,210 145,220 Z" />
+                                 <path data-id="arm" class="clickable-area" d="M255,220 C275,230 290,290 280,350 L300,355 L305,280 C305,240 265,210 255,220 Z" />
+                                 <circle data-id="elbow" class="clickable-area" cx="112" cy="295" r="20" /> 
+                                 <circle data-id="elbow" class="clickable-area" cx="288" cy="295" r="20" />
+                                 <circle data-id="wrist" class="clickable-area" cx="110" cy="350" r="15" /> 
+                                 <circle data-id="wrist" class="clickable-area" cx="290" cy="350" r="15" />
+                                 <path data-id="hand" class="clickable-area" d="M95,350 L115,380 L95,380 Z" />
+                                 <path data-id="hand" class="clickable-area" d="M285,350 L305,380 L285,380 Z" />
+                                 <path data-id="finger" class="clickable-area" d="M90,370 L120,390 L90,390 Z" />
+                                 <path data-id="finger" class="clickable-area" d="M280,370 L310,390 L280,390 Z" />
+                                 <path data-id="fingernail" class="clickable-area" d="M90,385 L120,395 L90,395 Z" />
+                                 <path data-id="fingernail" class="clickable-area" d="M280,385 L310,395 L280,395 Z" />
+                            </g>
+                        </svg>
+                    </div>
+                    <!-- SVG Container for the Back View -->
+                    <div id="svg-container-back" class="svg-container hidden">
+                        <svg id="body-map-back" class="body-map" role="img" aria-labelledby="svg-title-back" viewBox="0 0 400 700" xmlns="http://www.w3.org/2000/svg">
+                            <title id="svg-title-back">Back view of human body</title>
+                            <!-- VISUALS (NON-CLICKABLE) -->
+                            <g id="visual-layer-back">
+                               <path class="body-base" d="M200,195 C240,195 255,250 255,300 L255,380 L145,380 L145,300 C145,250 160,195 200,195 Z" />
+                                <path class="body-base" d="M200,90 a60,65 0 1,1 0,130 a60,65 0 1,1 0,-130" />
+                                <path class="body-base" d="M185,195 a20,20 0 0,0 30,0 L220,220 L180,220 Z"/>
+                                <path class="body-base" d="M145,220 C125,230 110,290 120,350 L100,355 L95,280 C95,240 135,210 145,220 Z" />
+                                <path class="body-base" d="M255,220 C275,230 290,290 280,350 L300,355 L305,280 C305,240 265,210 255,220 Z" />
+                                <path class="body-base" d="M145,380 C140,480 160,580 150,650 L180,650 C180,580 155,480 155,380 Z" />
+                                <path class="body-base" d="M255,380 C260,480 240,580 250,650 L220,650 C220,580 245,480 245,380 Z" />
+                                <ellipse class="body-base" cx="165" cy="650" rx="30" ry="15"/>
+                                <ellipse class="body-base" cx="235" cy="650" rx="30" ry="15"/>
+                                <path class="hair-base" d="M200,90 a60,65 0 1,1 0,130 a60,65 0 1,1 0,-130" />
+                                <path class="t-shirt-base" d="M145,220 L255,220 L255,300 L145,300Z M145,220 L120,290 L95,280 L135,210Z M255,220 L280,290 L305,280 L265,210Z" />
+                                <path class="shorts-base" d="M145,320 L255,320 L255,380 L145,380Z" />
+                            </g>
+                            <!-- CLICKABLE AREAS (BACK VIEW) -->
+                            <g id="clickable-layer-back" aria-hidden="true">
+                                <path data-id="back" class="clickable-area" d="M150,225 L250,225 L250,340 L150,340 Z" />
+                                <path data-id="buttocks" class="clickable-area" d="M150,340 L250,340 L250,395 L150,395 Z" />
+                                <path data-id="shoulder" class="clickable-area" d="M130,215 L180,215 L180,240 L120,240 Z" />
+                                <path data-id="shoulder" class="clickable-area" d="M220,215 L270,215 L280,240 L220,240 Z" />
+                                 <path data-id="waist" class="clickable-area" d="M160,320 L240,320 L240,360 L160,360 Z" />
+                                 <path data-id="hip" class="clickable-area" d="M145,350 L255,350 L255,390 L145,390 Z" />
+                                 <path data-id="arm" class="clickable-area" d="M145,230 C125,240 110,300 120,360 L100,365 L95,290 C95,250 135,220 145,230 Z" />
+                                 <path data-id="arm" class="clickable-area" d="M255,230 C275,240 290,300 280,360 L300,365 L305,290 C305,250 265,220 255,230 Z" />
+                                 <circle data-id="elbow" class="clickable-area" cx="112" cy="295" r="20" /> 
+                                 <circle data-id="elbow" class="clickable-area" cx="288" cy="295" r="20" />
+                                 <path data-id="calf" class="clickable-area" d="M160,535 C160,595 180,635 175,655 L185,655 C190,635 170,595 170,535 Z" />
+                                 <path data-id="calf" class="clickable-area" d="M240,535 C240,595 220,635 225,655 L215,655 C210,635 230,595 230,535 Z" />
+                            </g>
+                        </svg>
+                    </div>
+                    <!-- Vocabulary list will be rendered here by JavaScript -->
+                    <div id="vocabulary-list-container"></div>
+                </div>
+            </div>
+
+            <!-- Quiz Mode Container -->
+            <div id="quiz-mode-container" class="mode-container">
+                 <div id="quiz-intro" class="quiz-section">
+                    <h2>የፈተና ጊዜ!</h2>
+                    <p>ስለ ሰዉነት ክፍሎች በአማርኛ ያለዎትን እዉቀት ይፈትሹ።</p>
+                    <button id="start-quiz-btn" class="quiz-btn">ፈተናውን ጀምር</button>
+                </div>
+                <div id="quiz-main" class="quiz-section hidden">
+                    <div id="quiz-progress">Question <span id="question-current"></span> of <span id="question-total"></span></div>
+                    <h3 id="quiz-question"></h3>
+                    <div id="quiz-options"></div>
+                    <div id="quiz-feedback"></div>
+                    <button id="next-question-btn" class="quiz-btn hidden">ቀጣይ</button>
+                </div>
+                <div id="quiz-results" class="quiz-section hidden">
+                    <h2>ፈተናው ተጠናቋል!</h2>
+                    <p>የእርስዎ ጠቅላላ ዉጤት: <span id="final-score"></span></p>
+                    <p id="results-message"></p>
+                    <button id="retake-quiz-btn" class="quiz-btn">እንደገና ይጫወቱ</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- A single audio element is used to play all sounds, which is memory-efficient -->
+        <audio id="audio-player"></audio>
+
+        <!-- Link to the external JavaScript file -->
+        <script src="app.js"></script>
+    </div> <!-- End of the #amharic-body-parts-app container -->
+</body>
+</html>

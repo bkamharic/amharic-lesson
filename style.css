@@ -1,0 +1,243 @@
+/* FILE 2: style.css */
+/* Save this code in a file named "style.css" in the same folder as index.html */
+@import url('https://fonts.googleapis.com/css2?family=Abyssinica+SIL&family=Noto+Sans+Ethiopic:wght@400;700&family=Poppins:wght@400;600&display=swap');
+
+:root {
+    --primary-color: #005f73;
+    --secondary-color: #0a9396;
+    --accent-color: #94d2bd;
+    --light-color: #e9d8a6;
+    --dark-color: #001219;
+    --correct-color: #2a9d8f;
+    --incorrect-color: #e76f51;
+    --highlight-color: #ee9b00;
+    --body-fill: #E0AC69;
+    --body-stroke: #6B4423;
+    --panel-bg: #ffffff;
+    --text-primary: #333;
+    --text-secondary: #555;
+    --border-light: #e9ecef;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --btn-bg-color: #0c6a49;
+    --btn-hover-color: #862b0d;
+    --font-english: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-amharic: 'Abyssinica SIL', 'Noto Sans Ethiopic', serif;
+}
+
+#amharic-body-parts-app {
+    font-family: var(--font-english);
+    line-height: 1.6;
+    color: var(--dark-color);
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#amharic-body-parts-app header {
+    text-align: center;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+#amharic-body-parts-app h1 {
+    color: var(--primary-color);
+    font-family: var(--font-amharic);
+    font-weight: 700;
+}
+
+#amharic-body-parts-app nav {
+    margin-top: 1rem;
+    display: inline-flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background-color: var(--panel-bg);
+    padding: 0.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+#amharic-body-parts-app .nav-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.5rem;
+}
+
+#amharic-body-parts-app .nav-label {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+}
+
+#amharic-body-parts-app .mode-btn, 
+#amharic-body-parts-app .view-btn {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    border: 2px solid var(--btn-bg-color);
+    background-color: var(--panel-bg);
+    color: var(--btn-bg-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+#amharic-body-parts-app .mode-btn:hover, 
+#amharic-body-parts-app .view-btn:hover {
+    background-color: var(--btn-hover-color);
+    border-color: var(--btn-hover-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#amharic-body-parts-app .mode-btn.active,
+#amharic-body-parts-app .view-btn.active {
+    background-color: var(--btn-bg-color);
+    border-color: var(--btn-bg-color);
+    color: white;
+    transform: none;
+    box-shadow: none;
+}
+
+#amharic-body-parts-app main { width: 100%; }
+#amharic-body-parts-app .mode-container { display: none; }
+#amharic-body-parts-app .mode-container.active { display: block; }
+#amharic-body-parts-app .hidden { display: none !important; }
+#amharic-body-parts-app .visually-hidden { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+/* Updated Display Panel with Flexbox */
+#amharic-body-parts-app .display-panel {
+    background-color: var(--panel-bg);
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border: 1px solid var(--border-light);
+}
+
+#amharic-body-parts-app #display-image-container {
+    flex: 0 0 120px;
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease;
+}
+
+#amharic-body-parts-app #display-image-container:hover {
+    transform: scale(1.05);
+}
+
+#amharic-body-parts-app #display-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#amharic-body-parts-app #display-text-container {
+    flex: 1 1 auto;
+    text-align: left;
+}
+
+#amharic-body-parts-app .display-text {
+    margin: 0.25rem 0;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+#amharic-body-parts-app #display-amharic {
+    font-family: var(--font-amharic);
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--primary-color);
+}
+
+#amharic-body-parts-app .interactive-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+#amharic-body-parts-app .svg-container, 
+#amharic-body-parts-app #vocabulary-list-container {
+    flex: 1 1 450px;
+    background: var(--panel-bg);
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    min-width: 300px;
+    border: 1px solid var(--border-light);
+}
+
+#amharic-body-parts-app .svg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 20px;
+}
+
+#amharic-body-parts-app .body-map { width: 100%; max-width: 400px; height: auto; }
+#amharic-body-parts-app .body-map .clickable-area { cursor: pointer; fill: rgba(148, 210, 189, 0.3); stroke: rgba(0, 95, 115, 0.5); stroke-width: 2px; transition: fill 0.2s ease, transform 0.2s ease; }
+#amharic-body-parts-app .body-map .clickable-area:hover { fill: rgba(10, 147, 150, 0.6); transform: scale(1.03); }
+#amharic-body-parts-app .body-map .highlighted { fill: rgba(238, 155, 0, 0.7) !important; stroke: var(--dark-color); stroke-width: 2.5px; }
+#amharic-body-parts-app .body-base { fill: var(--body-fill); stroke: var(--body-stroke); stroke-width: 1.5; }
+#amharic-body-parts-app .hair-base { fill: #3D2314; }
+#amharic-body-parts-app .eyebrows-base { fill: #3D2314; }
+#amharic-body-parts-app .eyes-base { fill: white; }
+#amharic-body-parts-app .pupils-base { fill: #3D2314; }
+#amharic-body-parts-app .mouth-base { fill: #AE4A4A; }
+#amharic-body-parts-app .t-shirt-base { fill: #4a90e2; }
+#amharic-body-parts-app .shorts-base { fill: #3b7d52; }
+
+#amharic-body-parts-app #vocabulary-list-container { display: flex; flex-direction: column; gap: 0.5rem; }
+#amharic-body-parts-app .vocab-category-header { background-color: #f1f1f1; border: 1px solid var(--border-light); padding: 0.75rem 1rem; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background-color 0.2s; }
+#amharic-body-parts-app .vocab-category-header:hover { background-color: #e9e9e9; }
+#amharic-body-parts-app .vocab-category-header h2 { margin: 0; color: var(--primary-color); font-family: var(--font-amharic); font-size: 1.2rem; }
+#amharic-body-parts-app .vocab-category-header .toggle-icon { font-size: 1rem; font-weight: bold; transition: transform 0.3s ease; }
+#amharic-body-parts-app .vocab-list { list-style: none; padding: 0; margin: 0; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out; background-color: transparent; border-radius: 0 0 8px 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+#amharic-body-parts-app .vocab-category.active .vocab-list { max-height: 1000px; padding-top: 0.5rem; }
+#amharic-body-parts-app .vocab-category.active .toggle-icon { transform: rotate(90deg); }
+#amharic-body-parts-app .vocab-item-container { display: contents; }
+#amharic-body-parts-app .vocab-btn { width: 100%; background-color: var(--btn-bg-color); color: white; border: none; border-radius: 8px; padding: 0.5rem 0.75rem; text-align: left; cursor: pointer; transition: background-color 0.2s, transform 0.2s; font-family: var(--font-english); }
+#amharic-body-parts-app .vocab-btn:hover, #amharic-body-parts-app .vocab-btn:focus { background-color: var(--btn-hover-color); transform: translateY(-2px); }
+#amharic-body-parts-app .vocab-btn .amharic { font-family: var(--font-amharic); font-size: 1.4rem; font-weight: 400; display: block; }
+#amharic-body-parts-app .vocab-btn .english { font-size: 0.85rem; opacity: 0.9; display: block; }
+
+/* Quiz Mode Styles */
+#amharic-body-parts-app .quiz-section { background: var(--panel-bg); padding: 2rem; border-radius: 12px; text-align: center; box-shadow: 0 4px 12px var(--shadow-color); margin: 0 auto; border: 1px solid var(--border-light); }
+#amharic-body-parts-app .quiz-section h2 { font-family: var(--font-amharic); }
+#amharic-body-parts-app .clickable-question { color: var(--secondary-color); font-weight: bold; cursor: pointer; text-decoration: underline; text-decoration-style: dotted; }
+#amharic-body-parts-app .clickable-question:hover { color: var(--primary-color); }
+#amharic-body-parts-app .quiz-btn { font-size: 0.9rem; padding: 8px 18px; border: none; background-color: var(--btn-bg-color); color: white; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s; border-radius: 8px; margin-top: 20px; font-weight: 600; }
+#amharic-body-parts-app .quiz-btn:hover { background-color: var(--btn-hover-color); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+#amharic-body-parts-app #quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+#amharic-body-parts-app .option-btn { width: 100%; padding: 0.7rem; font-size: 1rem; background-color: white; border: 2px solid var(--btn-bg-color); color: var(--btn-bg-color); border-radius: 8px; cursor: pointer; transition: all 0.2s ease; font-weight: 600; }
+#amharic-body-parts-app .option-btn:not([disabled]):hover { background-color: var(--btn-hover-color); border-color: var(--btn-hover-color); color: white; transform: translateY(-2px); }
+#amharic-body-parts-app .option-btn.correct { background-color: var(--correct-color) !important; border-color: var(--correct-color) !important; color: white !important; }
+#amharic-body-parts-app .option-btn.incorrect { background-color: var(--incorrect-color) !important; border-color: var(--incorrect-color) !important; color: white !important; }
+#amharic-body-parts-app .option-btn:disabled { cursor: not-allowed; opacity: 0.7; }
+#amharic-body-parts-app #quiz-feedback { margin-top: 1.5rem; font-size: 1.2rem; font-weight: bold; min-height: 1.5em; }
+#amharic-body-parts-app #quiz-progress { text-align: right; color: #777; }
+
+@media (max-width: 900px) {
+    #amharic-body-parts-app .interactive-area { flex-direction: column; }
+    #amharic-body-parts-app .svg-container { position: static; }
+    #amharic-body-parts-app #quiz-options { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 500px) {
+    #amharic-body-parts-app .vocab-list { grid-template-columns: 1fr; }
+    #amharic-body-parts-app .display-panel { flex-direction: column; text-align: center; }
+    #amharic-body-parts-app #display-text-container { text-align: center; }
+}
