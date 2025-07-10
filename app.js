@@ -49,12 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- DOM ELEMENT CACHING ---
     const appContainer = document.getElementById('amharic-body-parts-app');
     const audioPlayer = appContainer.querySelector('#audio-player');
-    const ariaLiveRegion = appContainer.querySelector('#aria-live-region');
     const learnModeContainer = appContainer.querySelector('#learn-mode-container');
     const quizModeContainer = appContainer.querySelector('#quiz-mode-container');
     const modeLearnBtn = appContainer.querySelector('#mode-learn-btn');
     const modeQuizBtn = appContainer.querySelector('#mode-quiz-btn');
-    const viewSelector = appContainer.querySelector('#view-selector');
     const viewFrontBtn = appContainer.querySelector('#view-front-btn');
     const viewBackBtn = appContainer.querySelector('#view-back-btn');
     const vocabularyListContainer = appContainer.querySelector('#vocabulary-list-container');
@@ -64,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const displayPanel = appContainer.querySelector('#display-panel');
     const displayPlaceholder = appContainer.querySelector('#display-placeholder');
     const displayContent = appContainer.querySelector('#display-content');
-    const displayImageContainer = appContainer.querySelector('#display-image-container');
     const displayImage = appContainer.querySelector('#display-image');
     const displayAmharic = appContainer.querySelector('#display-amharic');
     const displayEnglish = appContainer.querySelector('#display-english');
@@ -95,11 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateDisplay(item) {
         if (item) {
             currentItem = item;
-            // Hide placeholder, show content
             displayPlaceholder.classList.add('hidden');
             displayContent.classList.remove('hidden');
             
-            // Update content
             displayImage.src = item.imageSrc;
             displayImage.alt = item.english;
             displayAmharic.textContent = item.amharic;
@@ -107,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
             displayPhonetic.textContent = `(${item.phonetic})`;
         } else {
             currentItem = null;
-            // Show placeholder, hide content
             displayPlaceholder.classList.remove('hidden');
             displayContent.classList.add('hidden');
         }
@@ -180,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentMode = mode;
         learnModeContainer.classList.toggle('active', mode === 'learn');
         quizModeContainer.classList.toggle('active', mode !== 'learn');
-        viewSelector.classList.toggle('hidden', mode !== 'learn');
+        appContainer.querySelector('#view-selector').classList.toggle('hidden', mode !== 'learn');
 
         modeLearnBtn.classList.toggle('active', mode === 'learn');
         modeQuizBtn.classList.toggle('active', mode !== 'learn');
@@ -195,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Quiz Functions (simplified for brevity, logic is the same) ---
+    // --- Quiz Functions ---
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -310,7 +304,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // This listener is on the panel itself, but we check if the image container was the target
     displayPanel.addEventListener('click', (e) => {
         if (e.target.closest('#display-image-container')) {
             if (currentItem && currentItem.audioSrc) {
@@ -333,8 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- INITIALIZATION ---
     function init() {
-        // Start by showing the placeholder message
-        updateDisplay(null);
+        updateDisplay(null); // Start by showing the placeholder
         switchMode('learn'); 
         switchView('front');
     }
