@@ -132,10 +132,18 @@
 
 /* The container for the actual content (image + text) */
 #amharic-body-parts-app #display-content {
-    display: flex;
+    display: none; /* Hidden by default, JS will change this to 'flex' */
     align-items: center;
     gap: 1.5rem;
 }
+
+#amharic-body-parts-app .display-panel.content-visible #display-content {
+    display: flex;
+}
+#amharic-body-parts-app .display-panel.content-visible #display-placeholder {
+    display: none;
+}
+
 
 #amharic-body-parts-app #display-image-container {
     flex: 0 0 120px;
