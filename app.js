@@ -1,5 +1,5 @@
 /* FILE 3: app.js */
-/* This is the final JS for the main lesson app. */
+/* This is the final, corrected JS for the main lesson app. */
 document.addEventListener('DOMContentLoaded', () => {
 
     const masterVocabulary = [
@@ -92,8 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateDisplay(item) {
         if (item) {
             currentItem = item;
-            displayPlaceholder.style.display = 'none';
-            displayContent.style.display = 'flex';
+            displayPanel.classList.add('content-visible'); // Use class to control visibility
             
             displayImage.src = item.imageSrc;
             displayImage.alt = item.english;
@@ -102,8 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             displayPhonetic.textContent = `(${item.phonetic})`;
         } else {
             currentItem = null;
-            displayPlaceholder.style.display = 'block';
-            displayContent.style.display = 'none';
+            displayPanel.classList.remove('content-visible'); // Remove class to show placeholder
         }
     }
 
