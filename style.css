@@ -1,6 +1,6 @@
 /* FILE 2: style.css */
-/* Save this code in a file named "style.css" in the same folder as index.html */
-@import url('https://fonts.googleapis.com/css2?family=Abyssinica+SIL&family=Noto+Sans+Ethiopic:wght@400;700&family=Poppins:wght@400;600&display=swap');
+/* This is the updated CSS for the main lesson app, not the matching game. */
+@import url('https://fonts.googleapis.com/css2?family=Abyssinica+SIL&family=Noto+Sans+Ethiopic:wght@400;700&family=Raleway:wght@400;600&family=Poppins:wght@400;600&display=swap');
 
 :root {
     --primary-color: #005f73;
@@ -20,7 +20,7 @@
     --shadow-color: rgba(0, 0, 0, 0.08);
     --btn-bg-color: #0c6a49;
     --btn-hover-color: #862b0d;
-    --font-english: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-english: 'Raleway', sans-serif; /* Using Raleway as requested */
     --font-amharic: 'Abyssinica SIL', 'Noto Sans Ethiopic', serif;
 }
 
@@ -108,18 +108,30 @@
 #amharic-body-parts-app .hidden { display: none !important; }
 #amharic-body-parts-app .visually-hidden { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
 
-/* Updated Display Panel with Flexbox */
+/* UPDATED: Display Panel styles for better layout */
 #amharic-body-parts-app .display-panel {
     background-color: var(--panel-bg);
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 12px;
     margin-bottom: 2rem;
     box-shadow: 0 4px 12px var(--shadow-color);
-    min-height: 140px;
+    min-height: 150px; /* Ensure it has a consistent height */
     display: flex;
-    align-items: center;
+    justify-content: center; /* Center content horizontally */
+    align-items: center;     /* Center content vertically */
     gap: 1.5rem;
     border: 1px solid var(--border-light);
+    transition: background-color 0.3s ease;
+}
+
+/* Style for the placeholder message */
+#amharic-body-parts-app .display-panel.is-empty {
+    background-color: #f8f9fa;
+}
+#amharic-body-parts-app #display-placeholder {
+    color: #aaa;
+    font-size: 1.2rem;
+    font-weight: 500;
 }
 
 #amharic-body-parts-app #display-image-container {
@@ -212,7 +224,7 @@
 #amharic-body-parts-app .vocab-btn { width: 100%; background-color: var(--btn-bg-color); color: white; border: none; border-radius: 8px; padding: 0.5rem 0.75rem; text-align: left; cursor: pointer; transition: background-color 0.2s, transform 0.2s; font-family: var(--font-english); }
 #amharic-body-parts-app .vocab-btn:hover, #amharic-body-parts-app .vocab-btn:focus { background-color: var(--btn-hover-color); transform: translateY(-2px); }
 #amharic-body-parts-app .vocab-btn .amharic { font-family: var(--font-amharic); font-size: 1.4rem; font-weight: 400; display: block; }
-#amharic-body-parts-app .vocab-btn .english { font-size: 0.85rem; opacity: 0.9; display: block; }
+#amharic-body-parts-app .vocab-btn .english { font-family: var(--font-english); font-size: 0.85rem; opacity: 0.9; display: block; }
 
 /* Quiz Mode Styles */
 #amharic-body-parts-app .quiz-section { background: var(--panel-bg); padding: 2rem; border-radius: 12px; text-align: center; box-shadow: 0 4px 12px var(--shadow-color); margin: 0 auto; border: 1px solid var(--border-light); }
