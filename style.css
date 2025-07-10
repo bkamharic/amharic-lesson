@@ -136,7 +136,7 @@
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    width: 100%;
+    /* width: 100%; <-- This was the issue. Removing it allows the parent to center this container. */
 }
 
 #amharic-body-parts-app #display-image-container {
