@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderVocabularyList(view) {
-        const itemsForView = masterVocabulary.filter(item => item.view === view || item.view === 'both');
+        const itemsForView = masterVocabulary.filter(item => item.category && (item.view === view || item.view === 'both'));
         const categories = [...new Set(itemsForView.map(item => item.category))];
         
         let html = '';
