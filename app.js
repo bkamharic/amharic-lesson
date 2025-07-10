@@ -1,5 +1,5 @@
 /* FILE 3: app.js */
-/* This is the updated JS for the main lesson app. */
+/* This is the final JS for the main lesson app. */
 document.addEventListener('DOMContentLoaded', () => {
 
     const masterVocabulary = [
@@ -59,7 +59,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const viewBackBtn = appContainer.querySelector('#view-back-btn');
     const vocabularyListContainer = appContainer.querySelector('#vocabulary-list-container');
     const allBodyMaps = appContainer.querySelectorAll('.body-map');
-    const displayPanel = appContainer.querySelector('.display-panel');
+    
+    // Display Panel Elements
+    const displayPanel = appContainer.querySelector('#display-panel');
+    const displayPlaceholder = appContainer.querySelector('#display-placeholder');
+    const displayContent = appContainer.querySelector('#display-content');
+    const displayImageContainer = appContainer.querySelector('#display-image-container');
+    const displayImage = appContainer.querySelector('#display-image');
+    const displayAmharic = appContainer.querySelector('#display-amharic');
+    const displayEnglish = appContainer.querySelector('#display-english');
+    const displayPhonetic = appContainer.querySelector('#display-phonetic');
+
+    // Quiz Elements
     const quizIntro = appContainer.querySelector('#quiz-intro');
     const quizMain = appContainer.querySelector('#quiz-main');
     const quizResults = appContainer.querySelector('#quiz-results');
@@ -82,40 +93,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateDisplay(item) {
-        displayPanel.innerHTML = ''; // Clear previous content
-        
         if (item) {
             currentItem = item;
-            displayPanel.classList.remove('is-empty');
-
-            // Create and append the image container
-            const imageContainer = document.createElement('div');
-            imageContainer.id = 'display-image-container';
-            imageContainer.innerHTML = `<img id="display-image" src="${item.imageSrc}" alt="${item.english}">`;
-            displayPanel.appendChild(imageContainer);
+            // Hide placeholder, show content
+            displayPlaceholder.classList.add('hidden');
+            displayContent.classList.remove('hidden');
             
-            // Create and append the text container
-            const textContainer = document.createElement('div');
-            textContainer.id = 'display-text-container';
-            textContainer.innerHTML = `
-                <p id="display-amharic" class="display-text">${item.amharic}</p>
-                <p id="display-english" class="display-text">${item.english}</p>
-                <p id="display-phonetic" class="display-text">(${item.phonetic})</p>
-            `;
-            displayPanel.appendChild(textContainer);
-
-            // Add event listener for the new image container
-            imageContainer.addEventListener('click', () => {
-                if (currentItem && currentItem.audioSrc) {
-                    playAudio(currentItem.audioSrc);
-                }
-            });
-
+            // Update content
+            displayImage.src = item.imageSrc;
+            displayImage.alt = item.english;
+            displayAmharic.textContent = item.amharic;
+            displayEnglish.textContent = item.english;
+            displayPhonetic.textContent = `(${item.phonetic})`;
         } else {
             currentItem = null;
-            displayPanel.classList.add('is-empty');
-            // Show placeholder text
-            displayPanel.innerHTML = `<div id="display-placeholder">Select a body part to begin!</div>`;
+            // Show placeholder, hide content
+            displayPlaceholder.classList.remove('hidden');
+            displayContent.classList.add('hidden');
         }
     }
 
@@ -316,6 +310,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    // This listener is on the panel itself, but we check if the image container was the target
+    displayPanel.addEventListener('click', (e) => {
+        if (e.target.closest('#display-image-container')) {
+            if (currentItem && currentItem.audioSrc) {
+                playAudio(currentItem.audioSrc);
+            }
+        }
+    });
+    
     quizQuestion.addEventListener('click', (e) => {
         const clickableWord = e.target.closest('.clickable-question');
         if (clickableWord && clickableWord.dataset.id) {
@@ -330,6 +333,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- INITIALIZATION ---
     function init() {
+        // Start by showing the placeholder message
+        updateDisplay(null);
         switchMode('learn'); 
         switchView('front');
     }
