@@ -132,10 +132,19 @@
 
 /* The container for the actual content (image + text) */
 #amharic-body-parts-app #display-content {
-    display: flex;
+    display: none; /* Hidden by default */
     align-items: center;
     gap: 1.5rem;
 }
+
+/* When the panel has the 'content-visible' class, show the content and hide the placeholder */
+#amharic-body-parts-app .display-panel.content-visible #display-content {
+    display: flex;
+}
+#amharic-body-parts-app .display-panel.content-visible #display-placeholder {
+    display: none;
+}
+
 
 #amharic-body-parts-app #display-image-container {
     flex: 0 0 120px;
@@ -254,7 +263,7 @@
 
 @media (max-width: 500px) {
     #amharic-body-parts-app .vocab-list { grid-template-columns: 1fr; }
-    #amharic-body-parts-app .display-panel:not(.is-empty) { 
+    #amharic-body-parts-app #display-content { 
         flex-direction: column; 
         text-align: center; 
     }
