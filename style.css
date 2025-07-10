@@ -1,6 +1,6 @@
 /* FILE 2: style.css */
-/* This is the updated CSS for the main lesson app, not the matching game. */
-@import url('https://fonts.googleapis.com/css2?family=Abyssinica+SIL&family=Noto+Sans+Ethiopic:wght@400;700&family=Raleway:wght@400;600&family=Poppins:wght@400;600&display=swap');
+/* This is the updated CSS for the main lesson app. */
+@import url('https://fonts.googleapis.com/css2?family=Abyssinica+SIL&family=Raleway:wght@400;600&family=Poppins:wght@400;600&display=swap');
 
 :root {
     --primary-color: #005f73;
@@ -108,33 +108,35 @@
 #amharic-body-parts-app .hidden { display: none !important; }
 #amharic-body-parts-app .visually-hidden { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
 
-/* UPDATED: Display Panel styles for better layout */
+/* Display Panel styles */
 #amharic-body-parts-app .display-panel {
     background-color: var(--panel-bg);
     padding: 1.5rem;
     border-radius: 12px;
     margin-bottom: 2rem;
     box-shadow: 0 4px 12px var(--shadow-color);
-    min-height: 150px; /* Ensure it has a consistent height */
+    min-height: 150px;
     display: flex;
-    justify-content: center; /* Center content horizontally */
-    align-items: center;     /* Center content vertically */
-    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
     border: 1px solid var(--border-light);
     transition: background-color 0.3s ease;
 }
 
 /* Style for the placeholder message */
-#amharic-body-parts-app .display-panel.is-empty {
-    background-color: #f8f9fa;
-    justify-content: center; /* Ensure placeholder is centered */
-    text-align: center;
-}
 #amharic-body-parts-app #display-placeholder {
     color: #aaa;
     font-size: 1.2rem;
     font-weight: 500;
     font-family: var(--font-english);
+}
+
+/* The container for the actual content (image + text) */
+#amharic-body-parts-app #display-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
 }
 
 #amharic-body-parts-app #display-image-container {
@@ -254,6 +256,9 @@
 
 @media (max-width: 500px) {
     #amharic-body-parts-app .vocab-list { grid-template-columns: 1fr; }
-    #amharic-body-parts-app .display-panel { flex-direction: column; text-align: center; }
+    #amharic-body-parts-app .display-panel:not(.is-empty) { 
+        flex-direction: column; 
+        text-align: center; 
+    }
     #amharic-body-parts-app #display-text-container { text-align: center; }
 }
