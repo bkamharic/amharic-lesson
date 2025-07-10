@@ -92,8 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateDisplay(item) {
         if (item) {
             currentItem = item;
-            displayPlaceholder.classList.add('hidden');
-            displayContent.classList.remove('hidden');
+            displayPlaceholder.style.display = 'none';
+            displayContent.style.display = 'flex';
             
             displayImage.src = item.imageSrc;
             displayImage.alt = item.english;
@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
             displayPhonetic.textContent = `(${item.phonetic})`;
         } else {
             currentItem = null;
-            displayPlaceholder.classList.remove('hidden');
-            displayContent.classList.add('hidden');
+            displayPlaceholder.style.display = 'block';
+            displayContent.style.display = 'none';
         }
     }
 
