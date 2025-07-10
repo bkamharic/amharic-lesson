@@ -20,7 +20,7 @@
     --shadow-color: rgba(0, 0, 0, 0.08);
     --btn-bg-color: #0c6a49;
     --btn-hover-color: #862b0d;
-    --font-english: 'Raleway', sans-serif; /* Using Raleway as requested */
+    --font-english: 'Raleway', sans-serif;
     --font-amharic: 'Abyssinica SIL', 'Noto Sans Ethiopic', serif;
 }
 
@@ -127,11 +127,14 @@
 /* Style for the placeholder message */
 #amharic-body-parts-app .display-panel.is-empty {
     background-color: #f8f9fa;
+    justify-content: center; /* Ensure placeholder is centered */
+    text-align: center;
 }
 #amharic-body-parts-app #display-placeholder {
     color: #aaa;
     font-size: 1.2rem;
     font-weight: 500;
+    font-family: var(--font-english);
 }
 
 #amharic-body-parts-app #display-image-container {
@@ -164,6 +167,7 @@
     margin: 0.25rem 0;
     font-size: 1.1rem;
     color: var(--text-secondary);
+    font-family: var(--font-english);
 }
 
 #amharic-body-parts-app #display-amharic {
