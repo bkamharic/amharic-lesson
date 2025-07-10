@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Display Panel Elements
     const displayPanel = appContainer.querySelector('#display-panel');
-    const displayPlaceholder = appContainer.querySelector('#display-placeholder');
     const displayContent = appContainer.querySelector('#display-content');
     const displayImage = appContainer.querySelector('#display-image');
     const displayAmharic = appContainer.querySelector('#display-amharic');
