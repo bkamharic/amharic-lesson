@@ -1,5 +1,4 @@
 /* FILE 2: style.css */
-/* This is the updated CSS for the main lesson app. */
 @import url('https://fonts.googleapis.com/css2?family=Abyssinica+SIL&family=Raleway:wght@400;600&family=Poppins:wght@400;600&display=swap');
 
 :root {
@@ -120,7 +119,6 @@
     justify-content: center;
     align-items: center;
     border: 1px solid var(--border-light);
-    transition: background-color 0.3s ease;
 }
 
 /* Style for the placeholder message */
