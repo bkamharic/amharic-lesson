@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateDisplay(item) {
         if (item) {
             currentItem = item;
-            displayPanel.classList.add('content-visible'); // Use class to control visibility
+            displayPanel.classList.add('content-visible');
             
             displayImage.src = item.imageSrc;
             displayImage.alt = item.english;
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             displayPhonetic.textContent = `(${item.phonetic})`;
         } else {
             currentItem = null;
-            displayPanel.classList.remove('content-visible'); // Remove class to show placeholder
+            displayPanel.classList.remove('content-visible');
         }
     }
 
